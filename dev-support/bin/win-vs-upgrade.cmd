@@ -14,9 +14,9 @@
 @REM See the License for the specific language governing permissions and
 @REM limitations under the License.
 
-@WHERE devenv
+@WHERE vcvarsall
 IF %ERRORLEVEL% NEQ 0 (
-  @ECHO "devenv command was not found. Verify your compiler installation level."
+  @ECHO "vcvarsall command was not found. Verify your compiler installation level."
   EXIT /b 1
 )
 
@@ -35,5 +35,5 @@ CD %srcdir%
 DIR /B *.sln > %workdir%\HADOOP-SLN-UPGRADE.TXT
 
 FOR /F %%f IN (%workdir%\HADOOP-SLN-UPGRADE.TXT) DO (
-  devenv %%f /upgrade
+  vcvarsall x64 %%f /upgrade
 )
